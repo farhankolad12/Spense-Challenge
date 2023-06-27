@@ -1,0 +1,17 @@
+.product-page .product-info {
+  width: 50%;
+}
+
+.product-page .variation-info {
+  width: 50%;
+}
+
+@media (max-width: 768px) {
+  .product-page .product-info {
+    width: 100%;
+  }
+
+  .product-page .variation-info {
+    width: 100%;
+  }
+}

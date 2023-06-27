@@ -1,0 +1,19 @@
+.check-out-page {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.check-out-page .order-summary {
+  width: 50%;
+}
+
+@media (max-width: 768px) {
+  .check-out-page {
+    flex-direction: column;
+  }
+
+  .check-out-page .order-summary {
+    width: 100%;
+  }
+}

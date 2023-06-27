@@ -1,0 +1,13 @@
+.top-brands-lists {
+  overflow-x: scroll;
+  width: 100%;
+}
+
+.top-brands-lists::-webkit-scrollbar {
+  display: none;
+}
+
+.top-brands-lists {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

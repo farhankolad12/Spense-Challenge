@@ -1,0 +1,12 @@
+.bottom-banner {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .bottom-banner {
+    flex-direction: column;
+  }
+}
