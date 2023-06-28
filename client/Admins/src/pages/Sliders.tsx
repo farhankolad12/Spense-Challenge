@@ -2,7 +2,9 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useGetReq from "../hooks/useGetReq";
 import ErrorCon from "../components/Message/ErrorCon";
-import SliderRow, { Sliders } from "../components/Sliders/SliderRow";
+import SliderRow, {
+  Sliders as SlidersType,
+} from "../components/Sliders/SliderRow";
 
 export default function Sliders() {
   const [makeReq, setMakeReq] = useState(0);
@@ -42,7 +44,7 @@ export default function Sliders() {
                       </tr>
                     </thead>
                     <tbody>
-                      {sliders.map((slider: Sliders) => {
+                      {sliders.map((slider: SlidersType) => {
                         return (
                           <SliderRow
                             setMakeReq={setMakeReq}
