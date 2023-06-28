@@ -187,6 +187,8 @@ export default function ProductPage() {
                       <div>
                         {[...Array(5)].map((star, index) => {
                           index += 1;
+                          console.log(star);
+
                           return (
                             <button
                               type="button"

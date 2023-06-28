@@ -15,11 +15,11 @@ export default function CouponsAdd({ coupon }: { coupon: Coupon | undefined }) {
     coupon ? coupon.usagePerUser : "0"
   );
   const [perUser, setPerUser] = useState(coupon ? coupon.perUser : "");
-  const [startDate, setStartDate] = useState<number | undefined>(
-    coupon && coupon.startDate
+  const [startDate, setStartDate] = useState<number>(
+    coupon ? coupon.startDate : Date.now()
   );
-  const [endDate, setEndDate] = useState<number | undefined>(
-    coupon && coupon.endDate
+  const [endDate, setEndDate] = useState<number>(
+    coupon ? coupon.endDate : Date.now()
   );
   const [minimumAmount, setMinimumAmount] = useState(
     coupon ? coupon.minimumAmount : ""

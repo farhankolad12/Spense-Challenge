@@ -102,7 +102,7 @@ export default function ProductsAdd({
   const [brandName, setBrandName] = useState(product ? product.brandName : "0");
   const [sku, setSku] = useState(product ? product.sku : "");
   const [img, setImg] = useState<File | string | undefined>(
-    product ? product.img : ""
+    product ? product.img : undefined
   );
   const [tags, setTags] = useState<String[]>(product ? product.tags : []);
   const [variationName, setVariationName] = useState(
@@ -194,8 +194,6 @@ export default function ProductsAdd({
   const navigate = useNavigate();
   const formRef = useRef<HTMLFormElement>(null);
 
-  console.log(brandName);
-
   function handleTags(e: any) {
     if (e.code === "Space") {
       const tag = e.currentTarget?.value.toString().trim();
@@ -224,51 +222,47 @@ export default function ProductsAdd({
       brandName === "" ||
       tags.length === 0 ||
       (variations.length > 0 && variationName === "") ||
-      !shippingConfig
+      !shippingConfig ||
+      !img
     ) {
       setError("Please fill the required fields!");
       return setTimeout(() => setError(""), 4000);
     }
 
-    const data: ProductType = {
-      category,
-      subCategory,
-      innerSubCategory,
-      name: productName,
-      sku,
-      brandName,
-      img,
-      tags,
-      variations: {
-        attribute: variationName,
-        info: variations,
-      },
-      pricing: {
-        oldPrice,
-        discountedPrice,
-        quantity,
-      },
-      description,
-      shippingConfig,
-      isFeature,
-      isHotDeals,
-      shippingTime,
-      tax,
-      id: nanoid(),
+    const pricing = {
+      oldPrice,
+      discountedPrice,
+      quantity,
+    };
+
+    const productVariations = {
+      attribute: variationName,
+      info: variations,
     };
 
     try {
       const formData = new FormData();
-      Object.entries(data).forEach(([key, value]) => {
-        formData.append(
-          key,
-          value?.lastModified
-            ? value
-            : typeof value === "object"
-            ? JSON.stringify(value)
-            : value
-        );
-      });
+      formData.append("category", JSON.stringify(category));
+      formData.append("subCategory", JSON.stringify(subCategory));
+      formData.append("innerSubCategory", JSON.stringify(innerSubCategory));
+      formData.append("name", productName);
+      formData.append("sku", sku);
+      formData.append("brandName", brandName);
+      formData.append("img", img);
+      formData.append("tags", JSON.stringify(tags));
+      formData.append(
+        "variations",
+        JSON.stringify({ variations: productVariations })
+      );
+      formData.append("pricing", JSON.stringify(pricing));
+      formData.append("description", description);
+      formData.append("shippingConfig", JSON.stringify(shippingConfig));
+      formData.append("isFeature", isFeature.toString());
+      formData.append("isHotDeals", isHotDeals.toString());
+      formData.append("shippingTime", shippingTime);
+      formData.append("tax", JSON.stringify(tax));
+      formData.append("id", nanoid());
+
       const res = await execute(formData);
       if (!res.success) {
         setError(res.message);

@@ -12,7 +12,7 @@ export default function CMSPages({ page }: { page: string }) {
     error,
     loading,
     userData: cmsRes,
-  } = useGetReq(`/cms-page/${page.toLowerCase().replaceAll(" ", "-")}`, {
+  } = useGetReq(`/cms-page/${page.toLowerCase().replace(" ", "-")}`, {
     makeReq: page,
   });
 
@@ -21,7 +21,7 @@ export default function CMSPages({ page }: { page: string }) {
     execute,
     loading: saveLoading,
     setError,
-  } = usePostReq(`/cms-page/save-${page.toLowerCase().replaceAll(" ", "-")}`);
+  } = usePostReq(`/cms-page/save-${page.toLowerCase().replace(" ", "-")}`);
 
   const textRef = useRef<HTMLTextAreaElement>(null);
 

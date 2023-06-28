@@ -38,6 +38,8 @@ export default function UserReview({ review }: { review: Review }) {
                   <strong>{customer.fullName}</strong>
                   <div>
                     {[...Array(5)].map((star, index) => {
+                      console.log(star);
+
                       index += 1;
                       return (
                         <button

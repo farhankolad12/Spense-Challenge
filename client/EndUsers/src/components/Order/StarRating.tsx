@@ -13,6 +13,8 @@ export default function StarRating({
     <div>
       {[...Array(5)].map((star, index) => {
         index += 1;
+        console.log(star);
+
         return (
           <button
             type="button"

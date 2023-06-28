@@ -1,4 +1,3 @@
-import React from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import useGetReq from "../hooks/useGetReq";
 import ErrorCon from "../components/Message/ErrorCon";
