@@ -1,16 +1,15 @@
 {
   "version": 2,
-  "name": "Spense-Challenge-api",
   "build": [
     {
-      "src": "server.js",
+      "src": "*.js",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "/server.js"
+      "dest": "/"
     }
   ]
 }
