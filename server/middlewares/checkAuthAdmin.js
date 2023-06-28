@@ -10,7 +10,12 @@ const checkAuthAdmin = async (req, res, next) => {
     const { user } = jwt.verify(token, process.env.JWT_SECRECT_KEY);
     const userExists = await Admins.findOne({ id: user.id });
     if (userExists == null) {
-      res.clearCookie("adminToken");
+      res.clearCookie("adminToken", {
+        expires: new Date(Date.now() + 1 * 24 * 60 * 60 * 1000),
+        path: "/",
+        secure: true,
+        sameSite: "none"
+      });
       return res.status(401).json({
         message: "Invalid Token",
       });
