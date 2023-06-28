@@ -20,6 +20,7 @@ router.post("/admin-login", async (req, res) => {
       const options = {
         expires: new Date(Date.now() + 1 * 24 * 60 * 60 * 1000),
         path: "/",
+        secure: true
       };
       return res
         .status(200)
